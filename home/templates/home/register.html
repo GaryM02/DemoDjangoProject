@@ -1,0 +1,62 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'register.css' %}">
+</head>
+
+<body class="parent">
+    <div class="formcontainer">
+        <div class="formtitle">Registration</div>
+        <div class="formcontent">
+            <form method="POST" action="#">
+                {% csrf_token %}
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">{{form.username.label}}</span>
+                        {{form.username}}
+                    </div>
+                    <div class="input-box">
+                        <span class="details">{{form.email.label}}</span>
+                        {{form.email}}
+                    </div>
+                    <div class="input-box">
+                        <span class="details">{{form.password1.label}}</span>
+                        {{form.password1}}
+                    </div>
+                    <div class="input-box">
+                        <span class="details">{{form.password2.label}}</span>
+                        {{form.password2}}
+                    </div>
+                </div>
+
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+
+                {{form.errors}}
+            </form>
+        </div>
+    </div>
+    <script>
+        var formfields = document.getElementsByTagName("input");
+        formfields[2].placeholder = "Username..";
+        formfields[3].placeholder = "Email..";
+        formfields[4].placeholder = "Password..";
+        formfields[5].placeholder = "Re-Enter Password..";
+
+        for (var field in formfields) {
+            formfields[field].className += "form_control";
+        }
+
+    </script>
+</body>
+
+
+{% endblock %}

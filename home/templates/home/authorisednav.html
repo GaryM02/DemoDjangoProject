@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- load static folder for css -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <title>{% block title %}base{% endblock %}</title>
+</head>
+
+<body>
+    <!-- the contents of this file are global for any html file included in this project 
+    it will include the navbar-->
+    <!-- the process of using templates is creating the new app, creating a urls file in the new app, in the project 
+        folder urls we need to import include alongside path, then include our app.urls in our project urlpatterns. from there we can 
+    add our urls to our app urls and the main project urls will route to those that are included-->
+
+
+
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <input type="checkbox" name="" id="">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <ul class="menu-items">
+                <li><a href="{% url 'authorisedhome' %}">Home</a></li>
+                <li><a href="{% url 'authorisedhome' %}">Project Dashboard</a></li>
+                <li><a href="{% url 'authorisedhome' %}">Communications</a></li>
+                <li><a href="{% url 'authorisedhome' %}">Vendors</a></li>
+                <li><a href="{% url 'authorisedhome' %}">Clients</a></li>
+                <li><a href="{% url 'logout' %}">Log Out</a></li>
+
+            </ul>
+            <h1 class="logo">Navbar</h1>
+        </div>
+    </nav>
+
+
+
+    <div class="content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+
+</html>
