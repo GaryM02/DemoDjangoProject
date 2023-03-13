@@ -1,0 +1,323 @@
+{% extends 'profiles/profileshome.html' %}
+{% block title %} All profiles {% endblock %} {% block content %}
+
+<style>
+    aside {
+        height: 100%;
+        background-color: #a2a2a2;
+        display: inline-block;
+        font-size: 15px;
+        vertical-align: top;
+        box-sizing: border-box;
+    }
+
+    aside header {
+        padding: 30px 20px;
+    }
+
+    aside input {
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 50px 0 20px;
+        background-color: #5e616a;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_search.png);
+        background-repeat: no-repeat;
+        background-position: 90%;
+        background-size: 40px;
+    }
+
+    aside input::placeholder {
+        color: #fff;
+    }
+
+    aside ul {
+        padding-left: 0;
+        margin: 0;
+        list-style-type: none;
+        overflow-y: scroll;
+        height: 100%;
+
+    }
+
+
+    aside li {
+        margin: 80px 20px 20px 20px;
+    }
+
+    /*
+    aside li:hover {
+        background-color: #5e616a;
+        color: #ffffff;
+
+    }
+
+    aside li:hover h2 {
+
+        color: #ffffff;
+
+    }
+
+    h2,
+    h3 {
+        margin: 0;
+
+    }
+
+    aside li img {
+        border-radius: 50%;
+        margin-left: 20px;
+        margin-right: 8px;
+    }
+
+    aside li div {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 12px;
+    }
+
+    aside li h2 {
+        font-size: 14px;
+        color: rgb(0, 0, 0);
+        font-weight: normal;
+        margin-bottom: 5px;
+    }
+
+    aside li h3 {
+        font-size: 12px;
+        color: #000000;
+        font-weight: normal;
+    } */
+
+
+    /* CSS */
+    .button-62#see {
+
+        background-color: #a4d9f9;
+    }
+
+    .button-62#add {
+        background-color: #a8f9a4;
+    }
+
+    .button-62#remove {
+        background-color: #f9a5a4;
+    }
+
+    .button-62#wappr {
+        background-color: #c4e8ff;
+    }
+
+    .button-62#accept {
+        background-color: #a8f9a4;
+    }
+
+    .button-62#reject {
+        background-color: #f9a5a4;
+    }
+
+    .button-62 {
+        border: 0;
+        border-radius: 12px;
+        color: #000000;
+        cursor: pointer;
+        display: inline-block;
+        font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 2.5;
+        outline: transparent;
+        padding: 0 1rem;
+        text-align: center;
+        text-decoration: none;
+        transition: box-shadow .2s ease-in-out;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        margin-top: 5px;
+    }
+
+    .button-62:not([disabled]):focus {
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+    }
+
+    .button-62:not([disabled]):hover {
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+    }
+
+    /* profile card */
+    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600');
+
+    /* .prowrapper {
+        position: flex;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    } */
+
+    .procontainer {
+        width: 280px;
+        height: 300px;
+        background: #fff;
+        position: relative;
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        border-radius: 10px;
+    }
+
+    .procontainer .profile-img {
+        width: 30%;
+        left: 35%;
+        top: -15%;
+        height: auto;
+        border-radius: 50%;
+        position: absolute;
+
+        border: 5px solid #a4d9f9;
+    }
+
+
+
+
+    .procontent {
+        padding: 60px 20px 20px;
+        width: 30%;
+
+    }
+
+    .procontent .sub-content {
+        text-align: center;
+        font-family: sans-serif;
+        margin-bottom: 10px;
+    }
+
+    .procontent .sub-content h1 {
+        text-transform: uppercase;
+        font-size: 24px;
+        color: #000000;
+
+    }
+
+    .procontent .sub-content span {
+        font-size: 12px;
+        color: #494949;
+    }
+
+    .procontent .sub-content p {
+        margin-top: 15px;
+        font-weight: 600;
+    }
+
+    .procontent .sub-content span.location {
+        display: block;
+        margin: 5px 0 20px;
+    }
+
+    .procontent .sub-content span.location .fa {
+        font-size: 18px;
+        margin-right: 5px;
+    }
+
+    .procontent .sub-content a {
+        color: #1da1f2;
+    }
+</style>
+
+<aside>
+    <div>
+        <header>
+
+            <form method="GET">
+                <input type="text" placeholder="search" name="username">
+            </form>
+        </header>
+    </div>
+
+    <div class="prodivs">
+        <ul>
+            {% if is_empty %}
+            <h1>No Profiles Found</h1>
+            {% endif %}
+            <!-- for user in query set we will display in html li -->
+            {% for obj in object_list %}
+            <li>
+                <div class="prowrapper">
+                    <div class="procontainer">
+                        <img src="https://i.imgur.com/fR2RIvG.jpg" alt="" class="profile-img">
+
+                        <div class="procontent">
+                            <div class="sub-content">
+                                <h1>{{obj.user}}</h1>
+                                <p>{{obj.bio}}</p>
+                                <p>{{obj.user.email}}</p>
+                            </div>
+
+                            <button id="see" class="button-62" role="button">See Profile</button>
+
+
+                            {% if obj.user not in rel_receiver and obj.user not in rel_sender %}
+                            <form action="{% url 'send-invite' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+
+                                <button id="add" class="button-62" type="submit">Add To Freinds</button>
+
+
+                            </form>
+                            {% endif %}
+
+                            {% if obj.user in rel_receiver and request.user not in obj.friends.all %}
+                            <button id="wappr" class="button-62" type="submit">Waiting for approval</button>
+                            {% endif %}
+
+                            {% if request.user in obj.friends.all %}
+                            <form action="{% url 'remove-friend' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+
+                                <button id="remove" class="button-62" type="submit">remove friend</button>
+
+
+                            </form>
+
+                            {% endif %}
+                            {% if obj in invites %}
+                            <form action="{% url 'accept_invite' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+
+                                <button id="accept" class="button-62" type="submit">Accept friend</button>
+
+
+                            </form>
+                            <form action="{% url 'reject_invite' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+
+                                <button id="reject" class="button-62" type="submit">Reject friend</button>
+
+
+                            </form>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+
+
+
+
+            {% endfor %}
+
+        </ul>
+    </div>
+</aside>
+
+
+{% endblock %}

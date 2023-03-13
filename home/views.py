@@ -17,8 +17,7 @@ def unauthhome(request):
 def home(response):
     return render(response, "home/home.html", {})
 
-def contact(response):
-    return render(response, "home/contact.html", {})
+
 
 def loginpage(request):
     if request.user.is_authenticated:

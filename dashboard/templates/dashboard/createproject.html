@@ -1,0 +1,8 @@
+{%include 'home/navbar.html'%}
+
+<div class="form-group">
+    <form method="POST">
+        {%csrf_token%}
+        {{form.as_p}}
+    </form>
+</div>

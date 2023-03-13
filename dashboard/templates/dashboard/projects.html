@@ -1,0 +1,21 @@
+{%include 'home/navbar.html'%}
+
+{% if is_empty %}
+<h1>No Projects Found</h1>
+{% endif %}
+<header>
+
+    <form method="GET">
+        <input type="text" placeholder="search" name="name">
+    </form>
+</header>
+{%for obj in object_list%}
+
+<ul>
+    <h2>{{obj.name}}</h2>
+    <li>{{obj.description}}</li>
+    <li>{{obj.vendor}}</li>
+    <li>{{obj.client}}</li>
+    <a href="{% url 'viewproject' obj.name %}">View details</a>
+</ul>
+{%endfor%}
